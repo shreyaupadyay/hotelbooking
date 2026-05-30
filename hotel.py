@@ -63,7 +63,7 @@ else:
 st.markdown("---")
 
 # Section 3: Check-out with Bill Calculation
-st.header("💸 Check-Out & Billing")
+st.header("Check-Out & Billing")
 booked_rooms = [r for r, info in st.session_state.rooms.items() if info["booked"]]
 
 if booked_rooms:
