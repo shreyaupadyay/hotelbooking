@@ -14,7 +14,7 @@ if "rooms" not in st.session_state:
         401: {"type": "Presidential Penthouse", "price": 600, "booked": False, "guest": ""},
     }
 
-st.title("Grand Horizon Luxury Hotel")
+st.title("Grand Horizon Luxury Hotel System")
 
 # Section 1: View Rooms Matrix
 st.header("Current Room Availability Matrix")
@@ -26,17 +26,17 @@ avail_count = total_rooms - booked_count
 
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Rooms", total_rooms)
-col2.metric("🟢 Available", avail_count)
-col3.metric("🔴 Occupied", booked_count)
+col2.metric("Available", avail_count)
+col3.metric("Occupied", booked_count)
 
 st.markdown("---")
 
 # Display the rooms neatly
 for room, info in st.session_state.rooms.items():
     if info["booked"]:
-        status = f"🔴 Booked by **{info['guest']}**"
+        status = f"Booked by **{info['guest']}**"
     else:
-        status = "🟢 Available"
+        status = "Available"
     st.write(f"**Room {room}** | {info['type']} | ${info['price']}/night | {status}")
 
 st.markdown("---")
@@ -80,10 +80,8 @@ if booked_rooms:
         st.session_state.rooms[room_to_vacate]["booked"] = False
         st.session_state.rooms[room_to_vacate]["guest"] = ""
         
-        # Show a pretty receipt summary
-        st.balloons()
         st.info(f"""
-        ### 🧾 Invoice for {current_guest} (Room {room_to_vacate})
+        ### Invoice for {current_guest} (Room {room_to_vacate})
         * **Room Type:** {st.session_state.rooms[room_to_vacate]['type']}
         * **Rate:** ${price_per_night} / night
         * **Duration:** {nights} night(s)
@@ -92,6 +90,5 @@ if booked_rooms:
         
         Check-out successful! Room is now vacant.
         """)
-        # We don't trigger st.rerun() immediately so they can actually read the invoice popup!
 else:
     st.write("No guests are currently checked in.")
