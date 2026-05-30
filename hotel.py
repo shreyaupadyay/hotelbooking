@@ -42,7 +42,7 @@ for room, info in st.session_state.rooms.items():
 st.markdown("---")
 
 # Section 2: Book a Room with Guest Name
-st.header("🔑 Check-In / Book a Room")
+st.header("Check-In / Book a Room")
 available_rooms = [r for r, info in st.session_state.rooms.items() if not info["booked"]]
 
 if available_rooms:
@@ -51,11 +51,11 @@ if available_rooms:
     
     if st.button("Confirm Check-In"):
         if guest_name.strip() == "":
-            st.error("⚠️ Please enter a guest name before booking!")
+            st.error("Please enter a guest name before booking!")
         else:
             st.session_state.rooms[room_to_book]["booked"] = True
             st.session_state.rooms[room_to_book]["guest"] = guest_name
-            st.success(f"🎉 Success! {guest_name} has been checked into Room {room_to_book}.")
+            st.success(f"Success! {guest_name} has been checked into Room {room_to_book}.")
             st.rerun()
 else:
     st.warning("All rooms are currently full!")
