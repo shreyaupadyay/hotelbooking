@@ -26,17 +26,17 @@ avail_count = total_rooms - booked_count
 
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Rooms", total_rooms)
-col2.metric("Available", avail_count)
-col3.metric("Occupied", booked_count)
+col2.metric("🟢 Available", avail_count)
+col3.metric("🔴 Occupied", booked_count)
 
 st.markdown("---")
 
 # Display the rooms neatly
 for room, info in st.session_state.rooms.items():
     if info["booked"]:
-        status = f"Booked by **{info['guest']}**"
+        status = f"🔴 Booked by **{info['guest']}**"
     else:
-        status = "Available"
+        status = "🟢 Available"
     st.write(f"**Room {room}** | {info['type']} | ${info['price']}/night | {status}")
 
 st.markdown("---")
